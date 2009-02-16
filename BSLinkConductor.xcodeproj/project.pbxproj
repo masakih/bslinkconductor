@@ -1,0 +1,330 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
+		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		F4A2F3FE0F43170F00A84E18 /* BSLinkConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2F3FD0F43170F00A84E18 /* BSLinkConductor.m */; };
+		F4A2F4020F4317A800A84E18 /* BSLinkConductorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2F4010F4317A800A84E18 /* BSLinkConductorItem.m */; };
+		F4A2F5850F444CCD00A84E18 /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A2F5340F4449BC00A84E18 /* OgreKit.framework */; };
+		F4A2F5880F444E3000A84E18 /* BSLinkConductor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4A2F5860F444E3000A84E18 /* BSLinkConductor.xib */; };
+		F4A2F58D0F458DA900A84E18 /* BSLCPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2F58C0F458DA900A84E18 /* BSLCPreferences.m */; };
+		F4A2F97D0F4650DC00A84E18 /* HMTemporaryFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2F97C0F4650DC00A84E18 /* HMTemporaryFolder.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		32DBCF630370AF2F00C91783 /* BSLinkConductor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLinkConductor_Prefix.pch; sourceTree = "<group>"; };
+		8D5B49B6048680CD000E48DA /* BSLinkConductor.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BSLinkConductor.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		F4A2F3FC0F43170F00A84E18 /* BSLinkConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLinkConductor.h; sourceTree = "<group>"; };
+		F4A2F3FD0F43170F00A84E18 /* BSLinkConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLinkConductor.m; sourceTree = "<group>"; };
+		F4A2F3FF0F43175300A84E18 /* BSImagePreviewerInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSImagePreviewerInterface.h; sourceTree = "<group>"; };
+		F4A2F4000F4317A800A84E18 /* BSLinkConductorItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLinkConductorItem.h; sourceTree = "<group>"; };
+		F4A2F4010F4317A800A84E18 /* BSLinkConductorItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLinkConductorItem.m; sourceTree = "<group>"; };
+		F4A2F5340F4449BC00A84E18 /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = /Users/masaki/Library/Frameworks/OgreKit.framework; sourceTree = "<absolute>"; };
+		F4A2F5870F444E3000A84E18 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/BSLinkConductor.xib; sourceTree = "<group>"; };
+		F4A2F58B0F458DA900A84E18 /* BSLCPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLCPreferences.h; sourceTree = "<group>"; };
+		F4A2F58C0F458DA900A84E18 /* BSLCPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLCPreferences.m; sourceTree = "<group>"; };
+		F4A2F97B0F4650DC00A84E18 /* HMTemporaryFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMTemporaryFolder.h; sourceTree = "<group>"; };
+		F4A2F97C0F4650DC00A84E18 /* HMTemporaryFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMTemporaryFolder.m; sourceTree = "<group>"; };
+		F4A2FA0D0F4663FF00A84E18 /* UTILKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILKit.h; path = ../bathyscaphe/misc/utilkit/UTILKit.h; sourceTree = SOURCE_ROOT; };
+		F4A2FA0E0F4663FF00A84E18 /* UTILError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILError.h; path = ../bathyscaphe/misc/utilkit/UTILError.h; sourceTree = SOURCE_ROOT; };
+		F4A2FA0F0F4663FF00A84E18 /* UTILDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILDescription.h; path = ../bathyscaphe/misc/utilkit/UTILDescription.h; sourceTree = SOURCE_ROOT; };
+		F4A2FA100F4663FF00A84E18 /* UTILDebugging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILDebugging.h; path = ../bathyscaphe/misc/utilkit/UTILDebugging.h; sourceTree = SOURCE_ROOT; };
+		F4A2FA110F4663FF00A84E18 /* UTILAssertion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILAssertion.h; path = ../bathyscaphe/misc/utilkit/UTILAssertion.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D5B49B3048680CD000E48DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */,
+				F4A2F5850F444CCD00A84E18 /* OgreKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* BSConductor */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AFFE84173DC02AAC07 /* Classes */,
+				32C88E010371C26100C91783 /* Other Sources */,
+				089C167CFE841241C02AAC07 /* Resources */,
+				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
+				19C28FB8FE9D52D311CA2CBB /* Products */,
+			);
+			name = BSConductor;
+			sourceTree = "<group>";
+		};
+		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */,
+				1058C7AEFEA557BF11CA2CBB /* Other Frameworks */,
+			);
+			name = "Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C167CFE841241C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F4A2F5860F444E3000A84E18 /* BSLinkConductor.xib */,
+				8D5B49B7048680CD000E48DA /* Info.plist */,
+				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AFFE84173DC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F4A2F97B0F4650DC00A84E18 /* HMTemporaryFolder.h */,
+				F4A2F97C0F4650DC00A84E18 /* HMTemporaryFolder.m */,
+				F4A2F58B0F458DA900A84E18 /* BSLCPreferences.h */,
+				F4A2F58C0F458DA900A84E18 /* BSLCPreferences.m */,
+				F4A2F3FF0F43175300A84E18 /* BSImagePreviewerInterface.h */,
+				F4A2F4000F4317A800A84E18 /* BSLinkConductorItem.h */,
+				F4A2F4010F4317A800A84E18 /* BSLinkConductorItem.m */,
+				F4A2F3FC0F43170F00A84E18 /* BSLinkConductor.h */,
+				F4A2F3FD0F43170F00A84E18 /* BSLinkConductor.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7AEFEA557BF11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4A2F5340F4449BC00A84E18 /* OgreKit.framework */,
+				089C167FFE841241C02AAC07 /* AppKit.framework */,
+				D2F7E65807B2D6F200F64583 /* CoreData.framework */,
+				089C1672FE841209C02AAC07 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FB8FE9D52D311CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D5B49B6048680CD000E48DA /* BSLinkConductor.plugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32C88E010371C26100C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F4A2FA0D0F4663FF00A84E18 /* UTILKit.h */,
+				F4A2FA0E0F4663FF00A84E18 /* UTILError.h */,
+				F4A2FA0F0F4663FF00A84E18 /* UTILDescription.h */,
+				F4A2FA100F4663FF00A84E18 /* UTILDebugging.h */,
+				F4A2FA110F4663FF00A84E18 /* UTILAssertion.h */,
+				32DBCF630370AF2F00C91783 /* BSLinkConductor_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D5B49AC048680CD000E48DA /* BSLinkConductor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "BSLinkConductor" */;
+			buildPhases = (
+				8D5B49AF048680CD000E48DA /* Resources */,
+				8D5B49B1048680CD000E48DA /* Sources */,
+				8D5B49B3048680CD000E48DA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BSLinkConductor;
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = BSConductor;
+			productReference = 8D5B49B6048680CD000E48DA /* BSLinkConductor.plugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "BSLinkConductor" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 089C166AFE841209C02AAC07 /* BSConductor */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D5B49AC048680CD000E48DA /* BSLinkConductor */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D5B49AF048680CD000E48DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
+				F4A2F5880F444E3000A84E18 /* BSLinkConductor.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D5B49B1048680CD000E48DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4A2F3FE0F43170F00A84E18 /* BSLinkConductor.m in Sources */,
+				F4A2F4020F4317A800A84E18 /* BSLinkConductorItem.m in Sources */,
+				F4A2F58D0F458DA900A84E18 /* BSLCPreferences.m in Sources */,
+				F4A2F97D0F4650DC00A84E18 /* HMTemporaryFolder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C167DFE841241C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C167EFE841241C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F4A2F5860F444E3000A84E18 /* BSLinkConductor.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4A2F5870F444E3000A84E18 /* English */,
+			);
+			name = BSLinkConductor.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB913B08733D840010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(HOME)/Applications/BathyScaphe.app/Contents/MacOS/BathyScaphe";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = /;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/masaki/Library/Frameworks,
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G4;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BSLinkConductor_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/BathyScaphe/PlugIns";
+				OTHER_CFLAGS = "";
+				PRODUCT_NAME = BSLinkConductor;
+				WRAPPER_EXTENSION = plugin;
+			};
+			name = Debug;
+		};
+		1DEB913C08733D840010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(HOME)/Applications/BathyScaphe.app/Contents/MacOS/BathyScaphe";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = /;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/masaki/Library/Frameworks,
+				);
+				GCC_MODEL_TUNING = G4;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BSLinkConductor_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/BathyScaphe/PlugIns";
+				OTHER_CFLAGS = "-DUTIL_BLOCK_DEBUG_WRITE";
+				PRODUCT_NAME = BSLinkConductor;
+				WRAPPER_EXTENSION = plugin;
+			};
+			name = Release;
+		};
+		1DEB913F08733D840010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.4;
+			};
+			name = Debug;
+		};
+		1DEB914008733D840010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.4;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "BSLinkConductor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB913B08733D840010E9CD /* Debug */,
+				1DEB913C08733D840010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "BSLinkConductor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB913F08733D840010E9CD /* Debug */,
+				1DEB914008733D840010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}
