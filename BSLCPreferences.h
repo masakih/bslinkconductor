@@ -25,6 +25,8 @@
 - (IBAction)add:(id)sender;
 - (IBAction)remove:(id)sender;
 
+- (IBAction)menuDidChange:(id)sender;
+
 extern NSString *BSLCItemsDidChangeNotification;
 
 @end
