@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 #import "BSImagePreviewerInterface.h"
+#import "PSPreviewerInterface.h"
 
 @class HMTemporaryFolder;
 
@@ -18,9 +19,17 @@
 	
 	NSMutableArray *items;
 	
+	PreviewerSelector *previewSelector;
+	NSArray *previewers;
+	
 	HMTemporaryFolder *tempFolder;
 	NSMutableDictionary *tempFileDict;
 	NSMutableDictionary *urlItemDict;
 }
 
+- (PreviewerSelector *)previewSelector;
+- (NSArray *)previewers;
+
 @end
+
+extern BSLinkConductor* BSLinkC;

@@ -14,13 +14,21 @@
 
 #import "HMTemporaryFolder.h"
 
+
+#import "PSPreviewerItem.h"
+#import "PSPreviewerInterface.h"
+
 static NSString *const BSLCSavedItemsKey = @"com.masakih.BSLinkConductor.BSLCSavedItemsKey";
+
+BSLinkConductor* BSLinkC;
 
 @interface BSLinkConductor (BSLCPrivate)
 - (BOOL)openLink:(NSURL *)anURL withItem:(BSLinkConductorItem *)item;
 
 - (id)preferenceForKey:(NSString *)key;
 - (void)setPreference:(id)value forKey:(NSString *)key;
+
+- (void)setPreviewers:(NSArray *)previewer;
 
 - (NSMutableArray *)savedItems;
 - (void)storeItemsArray;
@@ -32,6 +40,7 @@ static NSString *const BSLCSavedItemsKey = @"com.masakih.BSLinkConductor.BSLCSav
 - (id)initWithPreferences:(AppDefaults *)prefs
 {
 	if(self = [super init]) {
+		BSLinkC = self;
 		
 		[self setPreferences:prefs];
 		items = [[self savedItems] retain];
@@ -125,11 +134,53 @@ static NSString *const BSLCSavedItemsKey = @"com.masakih.BSLinkConductor.BSLCSav
 	[pref showWindow:sender];
 }
 
+- (void)awakeByPreviewerSelector:(PreviewerSelector *)thePreviewerSelector
+{
+	previewSelector = [thePreviewerSelector retain];
+	[self setPreviewers:[thePreviewerSelector previewerItems]];
+}
+
+#pragma mark #### NSApplication Delegate ####
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
 	[self storeItemsArray];
 	[tempFolder release];
 }
+
+#pragma mark -
+- (NSString *)displayName
+{
+	static NSString *displayName = nil;
+	if(displayName) return displayName;
+	
+	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+	displayName = [[bundle objectForInfoDictionaryKey:@"BSPreviewerDisplayName"] copy];
+	
+	return displayName;
+}
+- (PreviewerSelector *)previewSelector
+{
+	return previewSelector;
+}
+- (void)setPreviewers:(NSArray *)newArray
+{
+	NSMutableArray *array = [NSMutableArray array];
+	
+	NSString *displayName = [self displayName];
+	NSEnumerator *iter = [newArray objectEnumerator];
+	id p;
+	while(p = [iter nextObject]) {
+		if(![displayName isEqualToString:[p displayName]]) {
+			[array addObject:p];
+		}
+	}
+	previewers = [array copy];
+}
+- (NSArray *)previewers
+{
+	return previewers;
+}
+
 - (void)itemDidchanged:(NSNotification *)notification
 {
 	[self storeItemsArray];
@@ -207,7 +258,8 @@ additionalEventParamDescriptor:nil
 	
 	return filename;
 }
-	
+
+#pragma mark #### download ####
 - (void)beginDownloadURL:(NSURL *)anURL
 {
 	NSURLRequest *req;
