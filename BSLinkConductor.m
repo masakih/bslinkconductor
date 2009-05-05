@@ -186,8 +186,16 @@ BSLinkConductor* BSLinkC;
 	[self storeItemsArray];
 }
 
+- (BOOL)isPreviewerItem:(BSLinkConductorItem *)item
+{
+	return [[previewSelector previewerDisplayNames] containsObject:[item targetApplicationName]];
+}
 - (BOOL)openLink:(NSURL *)anURL withItem:(BSLinkConductorItem *)item;
 {
+	if([self isPreviewerItem:item]) {
+		return [previewSelector openURL:anURL inPreviewerByName:[item targetApplicationName]];
+	}
+	
 	NSWorkspaceLaunchOptions options = 0;
 	
 	if(!item) {
