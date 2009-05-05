@@ -42,6 +42,8 @@
 		F4A2FA0F0F4663FF00A84E18 /* UTILDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILDescription.h; path = ../bathyscaphe/misc/utilkit/UTILDescription.h; sourceTree = SOURCE_ROOT; };
 		F4A2FA100F4663FF00A84E18 /* UTILDebugging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILDebugging.h; path = ../bathyscaphe/misc/utilkit/UTILDebugging.h; sourceTree = SOURCE_ROOT; };
 		F4A2FA110F4663FF00A84E18 /* UTILAssertion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILAssertion.h; path = ../bathyscaphe/misc/utilkit/UTILAssertion.h; sourceTree = SOURCE_ROOT; };
+		F4F4DDC30F67D2D800C75461 /* PSPreviewerInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPreviewerInterface.h; sourceTree = "<group>"; };
+		F4F4DDC40F67D2D800C75461 /* PSPreviewerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPreviewerItem.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,8 @@
 		089C166AFE841209C02AAC07 /* BSConductor */ = {
 			isa = PBXGroup;
 			children = (
+				F4F4DDC30F67D2D800C75461 /* PSPreviewerInterface.h */,
+				F4F4DDC40F67D2D800C75461 /* PSPreviewerItem.h */,
 				08FB77AFFE84173DC02AAC07 /* Classes */,
 				32C88E010371C26100C91783 /* Other Sources */,
 				089C167CFE841241C02AAC07 /* Resources */,
@@ -91,11 +95,11 @@
 		08FB77AFFE84173DC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F4A2F3FF0F43175300A84E18 /* BSImagePreviewerInterface.h */,
 				F4A2F97B0F4650DC00A84E18 /* HMTemporaryFolder.h */,
 				F4A2F97C0F4650DC00A84E18 /* HMTemporaryFolder.m */,
 				F4A2F58B0F458DA900A84E18 /* BSLCPreferences.h */,
 				F4A2F58C0F458DA900A84E18 /* BSLCPreferences.m */,
-				F4A2F3FF0F43175300A84E18 /* BSImagePreviewerInterface.h */,
 				F4A2F4000F4317A800A84E18 /* BSLinkConductorItem.h */,
 				F4A2F4010F4317A800A84E18 /* BSLinkConductorItem.m */,
 				F4A2F3FC0F43170F00A84E18 /* BSLinkConductor.h */,
