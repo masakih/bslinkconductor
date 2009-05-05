@@ -9,15 +9,50 @@
 #import "BSLCPreferences.h"
 
 #import "BSLinkConductorItem.h"
+#import "BSLinkConductor.h"
+
+
+#import <objc/objc-class.h>
+
 
 @implementation BSLCPreferences
 
 NSString *BSLCItemsDidChangeNotification = @"BSLCItemsDidChangeNotification";
 
-
+static NSString *const BSLCPreferencesSeparetorItem = @"-- BSLCPreferences Separetor Item --";
+static NSString *const BSLCPreferencesAddItem = @"Choose ...";
 static BSLCPreferences *instance = nil;
 
 static NSString *const BSLCPRowIndexType = @"BSLCPRowIndexType";
+
+static BOOL (*orignalIMP)(id , SEL) ;
+
+BOOL bslcIsSeparatorItem(id self, SEL _cmd)
+{
+	if([BSLCPreferencesSeparetorItem isEqualToString:[self title]]) return YES;
+	
+	return orignalIMP(self, _cmd);
+}
+static void bslcSwapMethod()
+{
+    Method method;
+	
+    method = class_getInstanceMethod([NSMenuItem class], @selector(isSeparatorItem));
+	if(method) {
+		orignalIMP = (BOOL (*)(id,SEL))method->method_imp;
+		method->method_imp = (IMP)bslcIsSeparatorItem;
+		NSLog(@"Swaped");
+	}
+}
+
++ (void)initialize
+{
+	static BOOL isFirst = YES;
+	if(isFirst) {
+		isFirst = NO;
+		bslcSwapMethod();
+	}
+}
 
 - (id)init
 {
@@ -86,6 +121,27 @@ static NSString *const BSLCPRowIndexType = @"BSLCPRowIndexType";
 }
 
 
+- (NSArray *)applicationPullDownMenuItems
+{
+	NSMutableArray *result = [NSMutableArray array];
+	
+	[result addObject:BSLCPreferencesAddItem];
+	
+	if(![BSLinkC previewSelector]) return result;
+	
+	[result addObject:BSLCPreferencesSeparetorItem];
+	
+	NSArray *ps = [BSLinkC previewers];
+	NSEnumerator *psIter = [ps objectEnumerator];
+	id p;
+	while(p = [psIter nextObject]) {
+		[result addObject:[p displayName]];
+	}
+	[result addObject:BSLCPreferencesSeparetorItem];
+	
+	return result;
+}
+
 
 - (IBAction)showHideWindow:(id)sender
 {
@@ -122,6 +178,43 @@ static NSString *const BSLCPRowIndexType = @"BSLCPRowIndexType";
 	[self didChangeValueForKey:@"items"];
 	
 	[self notifyItemDidChange];
+}
+
+- (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo
+{
+	[panel orderOut:self];
+	
+	if(NSCancelButton == returnCode) return;
+	
+	NSString *filename = [panel filename];
+	filename = [filename lastPathComponent];
+	filename = [filename stringByDeletingPathExtension];
+	
+	[itemsController setValue:filename forKeyPath:@"selection.targetApplicationName"];
+}
+	
+- (void)chooseApplication:(id)sender
+{
+	NSString *selectedValue = [itemsController valueForKeyPath:@"selection.targetApplicationName"];
+	
+	if(![selectedValue isEqualToString:BSLCPreferencesAddItem]) return;
+	
+	NSOpenPanel *panel = [NSOpenPanel openPanel];
+	[panel setAllowsMultipleSelection:NO];
+	
+	[panel beginSheetForDirectory:@"/Applications/"
+							 file:@""
+							types:[NSArray arrayWithObject:@"app"]
+				   modalForWindow:[sender window]
+					modalDelegate:self didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:)
+					  contextInfo:NULL];
+	
+}
+- (IBAction)menuDidChange:(id)sender
+{
+	NSLog(@"sender -> %@", sender);
+	NSLog(@"selected value -> %@", [itemsController valueForKeyPath:@"selection.targetApplicationName"]);
+	[self performSelector:@selector(chooseApplication:) withObject:sender afterDelay:0.0];
 }
 
 - (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard
