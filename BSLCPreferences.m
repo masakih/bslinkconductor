@@ -41,7 +41,7 @@ static void bslcSwapMethod()
 	if(method) {
 		orignalIMP = (BOOL (*)(id,SEL))method->method_imp;
 		method->method_imp = (IMP)bslcIsSeparatorItem;
-		NSLog(@"Swaped");
+//		NSLog(@"Swaped");
 	}
 }
 
@@ -212,8 +212,8 @@ static void bslcSwapMethod()
 }
 - (IBAction)menuDidChange:(id)sender
 {
-	NSLog(@"sender -> %@", sender);
-	NSLog(@"selected value -> %@", [itemsController valueForKeyPath:@"selection.targetApplicationName"]);
+//	NSLog(@"sender -> %@", sender);
+//	NSLog(@"selected value -> %@", [itemsController valueForKeyPath:@"selection.targetApplicationName"]);
 	[self performSelector:@selector(chooseApplication:) withObject:sender afterDelay:0.0];
 }
 
