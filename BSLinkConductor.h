@@ -25,6 +25,9 @@
 	HMTemporaryFolder *tempFolder;
 	NSMutableDictionary *tempFileDict;
 	NSMutableDictionary *urlItemDict;
+	
+	IBOutlet NSWindow *window;
+	IBOutlet NSProgressIndicator *progress;
 }
 
 - (PreviewerSelector *)previewSelector;

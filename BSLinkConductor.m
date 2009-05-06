@@ -268,8 +268,39 @@ additionalEventParamDescriptor:nil
 }
 
 #pragma mark #### download ####
+- (void)loadProgressPanel
+{
+	if(window) return;
+	
+	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+	[bundle loadNibFile:@"BSLCProgressPanel"
+	  externalNameTable:[NSDictionary dictionaryWithObject:self forKey:NSNibOwner]
+			   withZone:[self zone]];
+}
+- (void)openProgressPanel
+{
+	[self loadProgressPanel];
+	
+	NSWindow *mainWindow = [NSApp mainWindow];
+	
+	[NSApp beginSheet:window
+	   modalForWindow:mainWindow
+		modalDelegate:nil
+	   didEndSelector:Nil
+		  contextInfo:NULL];
+	
+	[progress startAnimation:self];
+}
+- (void)closeProgressPanel
+{
+	[progress stopAnimation:self];
+	[window orderOut:self];
+	[NSApp endSheet:window];
+}
 - (void)beginDownloadURL:(NSURL *)anURL
 {
+	[self openProgressPanel];
+	
 	NSURLRequest *req;
 	
 	req = [NSURLRequest requestWithURL:anURL
@@ -305,6 +336,8 @@ additionalEventParamDescriptor:nil
 	
 	NSURL *tagetFileURL = [NSURL fileURLWithPath:filepath];
 	
+	[self closeProgressPanel];
+	
 	[self openLink:tagetFileURL withItem:item];
 }
 - (void)download:(NSURLDownload *)download didFailWithError:(NSError *)error
@@ -314,6 +347,8 @@ additionalEventParamDescriptor:nil
 	
 	[tempFileDict removeObjectForKey:targetURL];
 	[urlItemDict removeObjectForKey:targetURL];
+	
+	[self closeProgressPanel];
 	
 	NSBeep();
 }
