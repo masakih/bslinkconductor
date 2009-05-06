@@ -15,6 +15,7 @@
 		F4A2F5880F444E3000A84E18 /* BSLinkConductor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4A2F5860F444E3000A84E18 /* BSLinkConductor.xib */; };
 		F4A2F58D0F458DA900A84E18 /* BSLCPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2F58C0F458DA900A84E18 /* BSLCPreferences.m */; };
 		F4A2F97D0F4650DC00A84E18 /* HMTemporaryFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2F97C0F4650DC00A84E18 /* HMTemporaryFolder.m */; };
+		F4A807FE0FB118D000FD7FE3 /* BSLCProgressPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4A807FD0FB118D000FD7FE3 /* BSLCProgressPanel.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		F4A2FA0F0F4663FF00A84E18 /* UTILDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILDescription.h; path = ../bathyscaphe/misc/utilkit/UTILDescription.h; sourceTree = SOURCE_ROOT; };
 		F4A2FA100F4663FF00A84E18 /* UTILDebugging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILDebugging.h; path = ../bathyscaphe/misc/utilkit/UTILDebugging.h; sourceTree = SOURCE_ROOT; };
 		F4A2FA110F4663FF00A84E18 /* UTILAssertion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILAssertion.h; path = ../bathyscaphe/misc/utilkit/UTILAssertion.h; sourceTree = SOURCE_ROOT; };
+		F4A807FA0FB118C000FD7FE3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/BSLCProgressPanel.xib; sourceTree = "<group>"; };
 		F4F4DDC30F67D2D800C75461 /* PSPreviewerInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPreviewerInterface.h; sourceTree = "<group>"; };
 		F4F4DDC40F67D2D800C75461 /* PSPreviewerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPreviewerItem.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +90,7 @@
 				F4A2F5860F444E3000A84E18 /* BSLinkConductor.xib */,
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
+				F4A807FD0FB118D000FD7FE3 /* BSLCProgressPanel.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 			files = (
 				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
 				F4A2F5880F444E3000A84E18 /* BSLinkConductor.xib in Resources */,
+				F4A807FE0FB118D000FD7FE3 /* BSLCProgressPanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +231,14 @@
 				F4A2F5870F444E3000A84E18 /* English */,
 			);
 			name = BSLinkConductor.xib;
+			sourceTree = "<group>";
+		};
+		F4A807FD0FB118D000FD7FE3 /* BSLCProgressPanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4A807FA0FB118C000FD7FE3 /* English */,
+			);
+			name = BSLCProgressPanel.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
