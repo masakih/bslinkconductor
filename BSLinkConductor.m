@@ -62,7 +62,19 @@ BSLinkConductor* BSLinkC;
 	
 	return self;
 }
-
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	
+	[tempFolder release];
+	[tempFileDict release];
+	[urlItemDict release];
+	[items release];
+	[appDefaults release];
+	
+	[super dealloc];
+}
+	
 - (AppDefaults *)preferences
 {
 	return appDefaults;
