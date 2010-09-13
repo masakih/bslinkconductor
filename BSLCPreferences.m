@@ -16,12 +16,12 @@
 
 static NSString *const BSLCPreferencesSeparetorItem = @"-- BSLCPreferences Separetor Item --";
 
-@implementation BSLCPreferences (MethodExchange)
-- (BOOL)isSeparatorItemCustom
+@implementation NSMenuItem (BSLCMethodExchange)
+- (BOOL)isSeparatorItemBSLCCustom
 {
 	if([BSLCPreferencesSeparetorItem isEqualToString:[self title]]) return YES;
 	
-	return [self isSeparatorItemCustom];
+	return [self isSeparatorItemBSLCCustom];
 }
 @end
 
@@ -34,26 +34,13 @@ static BSLCPreferences *instance = nil;
 
 static NSString *const BSLCPRowIndexType = @"BSLCPRowIndexType";
 
-static BOOL (*orignalIMP)(id , SEL) ;
-
-BOOL bslcIsSeparatorItem(id self, SEL _cmd)
-{
-	if([BSLCPreferencesSeparetorItem isEqualToString:[self title]]) return YES;
-	
-	return orignalIMP(self, _cmd);
-}
 static void bslcSwapMethod()
 {
     Method method;
 	
     method = class_getInstanceMethod([NSMenuItem class], @selector(isSeparatorItem));
-	orignalIMP = (BOOL (*)(id,SEL))class_getMethodImplementation([NSMenuItem class], @selector(isSeparatorItem));
 	if(method) {
-//		orignalIMP = (BOOL (*)(id,SEL))method->method_imp;
-//		method->method_imp = (IMP)bslcIsSeparatorItem;
-//		NSLog(@"Swaped");
-		
-		Method newMethod = class_getInstanceMethod([BSLCPreferences class], @selector(isSeparatorItemCustom));
+		Method newMethod = class_getInstanceMethod([NSMenuItem class], @selector(isSeparatorItemBSLCCustom));
 		method_exchangeImplementations(method, newMethod);
 	}
 }
