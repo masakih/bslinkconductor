@@ -8,7 +8,7 @@
 
 #import "BSLinkConductor.h"
 
-#import <OgreKit/OGRegularExpression.h>
+#import <CocoaOniguruma/OnigRegexpUtility.h>
 #import "BSLinkConductorItem.h"
 #import "BSLCPreferences.h"
 
@@ -89,13 +89,12 @@ BSLinkConductor* BSLinkC;
 - (BOOL)showImageWithURL:(NSURL *)imageURL
 {
 	NSString *urlString = [imageURL absoluteString];
-	OGRegularExpression *exp;
 	
 	NSEnumerator *itemEnum = [items objectEnumerator];
 	BSLinkConductorItem *item;
 	while(item = [itemEnum nextObject]) {
-		exp = [OGRegularExpression regularExpressionWithString:[item regularExpression]];
-		if([exp matchInString:urlString]) {
+		NSRange range = [urlString rangeOfRegexp:[item regularExpression]];
+		if(range.location != NSNotFound) {
 			if([item isUseLocalCopy]) {
 				[urlItemDict setObject:item forKey:imageURL];
 				[self beginDownloadURL:imageURL];
@@ -110,18 +109,14 @@ BSLinkConductor* BSLinkC;
 - (BOOL)validateLink:(NSURL *)anURL
 {
 	NSString *urlString = [anURL absoluteString];
-	OGRegularExpression *exp;
 	
 	NSEnumerator *itemEnum = [items objectEnumerator];
 	BSLinkConductorItem *item;
 	while(item = [itemEnum nextObject]) {
-		exp = [OGRegularExpression regularExpressionWithString:[item regularExpression]];
-		UTILDebugWrite1(@"RE -->  %@", [item regularExpression]);
-		
-		if([exp matchInString:urlString]) {
+		NSRange range = [urlString rangeOfRegexp:[item regularExpression]];
+		if(range.location != NSNotFound) {
 			
 			UTILDebugWrite(@"Matched!!");
-			
 			return YES;
 		}
 	}
@@ -146,7 +141,7 @@ BSLinkConductor* BSLinkC;
 	[pref showWindow:sender];
 }
 
-- (void)awakeByPreviewerSelector:(PreviewerSelector *)thePreviewerSelector
+- (void)awakeByPreviewerSelector:(id <PSPreviewerInterface>)thePreviewerSelector
 {
 	previewSelector = [thePreviewerSelector retain];
 	[self setPreviewers:[thePreviewerSelector previewerItems]];
