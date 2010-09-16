@@ -22,6 +22,10 @@ static NSString *const BSLCItemUserCopyKey = @"BSLCItemUserCopyKey";
 
 @implementation BSLinkConductorItem
 
+@synthesize name, regularExpression, targetApplicationName;
+@synthesize targetIdentifier;
+@synthesize openInBackground, useLocalCopy;
+
 - (id)init
 {
 	if(self = [super init]) {
@@ -34,33 +38,16 @@ static NSString *const BSLCItemUserCopyKey = @"BSLCItemUserCopyKey";
 	
 	return self;
 }
+- (void)dealloc
+{
+	self.name = nil;
+	self.regularExpression = nil;
+	self.targetApplicationName = nil;
+	[targetIdentifier release];
+	
+	[super dealloc];
+}
 
-- (NSString *)name
-{
-	return name;
-}
-- (void)setName:(NSString *)inName
-{
-	if([name isEqualToString:inName]) return;
-	
-	[name autorelease];
-	name = [inName copyWithZone:[self zone]];
-}
-- (NSString *)regularExpression
-{
-	return regularExpression;
-}
-- (void)setRegularExpression:(NSString *)inRegularExpression
-{
-	if([regularExpression isEqualToString:inRegularExpression]) return;
-	
-	[regularExpression autorelease];
-	regularExpression = [inRegularExpression copyWithZone:[self zone]];
-}
-- (NSString *)targetApplicationName
-{
-	return targetApplicationName;
-}
 - (void)setTargetApplicationName:(NSString *)inAppName
 {
 	if([targetApplicationName isEqualToString:inAppName]) return;
@@ -81,28 +68,6 @@ static NSString *const BSLCItemUserCopyKey = @"BSLCItemUserCopyKey";
 	}
 	
 	targetIdentifier = [[bundle bundleIdentifier] copyWithZone:[self zone]];
-}
-
-- (NSString *)targetIdentifier
-{
-	return targetIdentifier;
-}
-
-- (BOOL)isOpenInBackground
-{
-	return openInBackground;
-}
-- (void)setOpenInBackground:(BOOL)flag
-{
-	openInBackground = flag;
-}
-- (BOOL)isUseLocalCopy
-{
-	return useLocalCopy;
-}
-- (void)setUseLocalCopy:(BOOL)flag
-{
-	useLocalCopy = flag;
 }
 
 - (id)copyWithZone:(NSZone *)zone
