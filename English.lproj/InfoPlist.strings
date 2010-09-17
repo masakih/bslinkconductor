@@ -5,8 +5,8 @@
 	<key>BSPreviewerDisplayName</key>
 	<string>BSLinkConductor</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>copyright 2009 masakih</string>
+	<string>copyright 2009-2010 masakih</string>
 	<key>CFBundleGetInfoString</key>
-	<string>BSLinkConductor 1.2 copyright 2009-2010 masakih</string>
+	<string>BSLinkConductor 1.3 copyright 2009-2010 masakih</string>
 </dict>
 </plist>
