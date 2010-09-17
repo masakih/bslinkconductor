@@ -90,9 +90,7 @@ BSLinkConductor* BSLinkC;
 {
 	NSString *urlString = [imageURL absoluteString];
 	
-	NSEnumerator *itemEnum = [items objectEnumerator];
-	BSLinkConductorItem *item;
-	while(item = [itemEnum nextObject]) {
+	for(BSLinkConductorItem *item in items) {
 		NSRange range = [urlString rangeOfRegexp:[item regularExpression]];
 		if(range.location != NSNotFound) {
 			if([item isUseLocalCopy]) {
@@ -110,9 +108,7 @@ BSLinkConductor* BSLinkC;
 {
 	NSString *urlString = [anURL absoluteString];
 	
-	NSEnumerator *itemEnum = [items objectEnumerator];
-	BSLinkConductorItem *item;
-	while(item = [itemEnum nextObject]) {
+	for(BSLinkConductorItem *item in items) {
 		NSRange range = [urlString rangeOfRegexp:[item regularExpression]];
 		if(range.location != NSNotFound) {
 			
@@ -174,11 +170,9 @@ BSLinkConductor* BSLinkC;
 	NSMutableArray *array = [NSMutableArray array];
 	
 	NSString *displayName = [self displayName];
-	NSEnumerator *iter = [newArray objectEnumerator];
-	id p;
-	while(p = [iter nextObject]) {
-		if(![displayName isEqualToString:[p displayName]]) {
-			[array addObject:p];
+	for(PSPreviewerItem *item in newArray) {
+		if(![displayName isEqualToString:[item displayName]]) {
+			[array addObject:item];
 		}
 	}
 	previewers = [array copy];

@@ -131,11 +131,8 @@ static void bslcSwapMethod()
 	
 	[result addObject:BSLCPreferencesSeparetorItem];
 	
-	NSArray *ps = [BSLinkC previewers];
-	NSEnumerator *psIter = [ps objectEnumerator];
-	id p;
-	while(p = [psIter nextObject]) {
-		[result addObject:[p displayName]];
+	for(PSPreviewerItem *item in [BSLinkC previewers]) {
+		[result addObject:[item displayName]];
 	}
 	[result addObject:BSLCPreferencesSeparetorItem];
 	
