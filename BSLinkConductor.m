@@ -111,13 +111,9 @@ BSLinkConductor* BSLinkC;
 	for(BSLinkConductorItem *item in items) {
 		NSRange range = [urlString rangeOfRegexp:[item regularExpression]];
 		if(range.location != NSNotFound) {
-			
-			UTILDebugWrite(@"Matched!!");
 			return YES;
 		}
 	}
-	
-	UTILDebugWrite(@"Unmatched!!!");
 	
 	return NO;
 }
@@ -200,7 +196,6 @@ BSLinkConductor* BSLinkC;
 	NSWorkspaceLaunchOptions options = 0;
 	
 	if(!item) {
-		UTILDebugWrite1(@"%@, item is nil!!!", NSStringFromSelector(_cmd));
 		return NO;
 	}
 	
@@ -232,13 +227,11 @@ additionalEventParamDescriptor:nil
 {
 	NSData *itemsData = [self preferenceForKey:BSLCSavedItemsKey];
 	if(!itemsData) {
-		UTILDebugWrite(@"itemsData is nil!!!");
 		return [NSMutableArray array];
 	}
 	
 	NSArray *itemsArray = [NSKeyedUnarchiver unarchiveObjectWithData:itemsData];
 	if(![itemsArray isKindOfClass:[NSArray class]]) {
-		UTILDebugWrite(@"itemsArray is not NSArray!!!");
 		return [NSMutableArray array];
 	}
 	
@@ -248,13 +241,10 @@ additionalEventParamDescriptor:nil
 {
 	NSData *itemsData = [NSKeyedArchiver archivedDataWithRootObject:items];
 	if(!itemsData) {
-		UTILDebugWrite(@"Can not archive!!!");
 		return;
 	}
 	
 	[self setPreference:itemsData forKey:BSLCSavedItemsKey];
-	
-	UTILDebugWrite(@"Stored!!!");
 }
 
 - (NSString *)fileNameForURL:(NSURL *)anURL

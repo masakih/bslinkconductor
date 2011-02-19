@@ -50,11 +50,6 @@
 		F4A2F58C0F458DA900A84E18 /* BSLCPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLCPreferences.m; sourceTree = "<group>"; };
 		F4A2F97B0F4650DC00A84E18 /* HMTemporaryFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMTemporaryFolder.h; sourceTree = "<group>"; };
 		F4A2F97C0F4650DC00A84E18 /* HMTemporaryFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMTemporaryFolder.m; sourceTree = "<group>"; };
-		F4A2FA0D0F4663FF00A84E18 /* UTILKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILKit.h; path = ../bathyscaphe/misc/utilkit/UTILKit.h; sourceTree = SOURCE_ROOT; };
-		F4A2FA0E0F4663FF00A84E18 /* UTILError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILError.h; path = ../bathyscaphe/misc/utilkit/UTILError.h; sourceTree = SOURCE_ROOT; };
-		F4A2FA0F0F4663FF00A84E18 /* UTILDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILDescription.h; path = ../bathyscaphe/misc/utilkit/UTILDescription.h; sourceTree = SOURCE_ROOT; };
-		F4A2FA100F4663FF00A84E18 /* UTILDebugging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILDebugging.h; path = ../bathyscaphe/misc/utilkit/UTILDebugging.h; sourceTree = SOURCE_ROOT; };
-		F4A2FA110F4663FF00A84E18 /* UTILAssertion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTILAssertion.h; path = ../bathyscaphe/misc/utilkit/UTILAssertion.h; sourceTree = SOURCE_ROOT; };
 		F4A807FA0FB118C000FD7FE3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/BSLCProgressPanel.xib; sourceTree = "<group>"; };
 		F4F4DDC30F67D2D800C75461 /* PSPreviewerInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPreviewerInterface.h; sourceTree = "<group>"; };
 		F4F4DDC40F67D2D800C75461 /* PSPreviewerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPreviewerItem.h; sourceTree = "<group>"; };
@@ -153,11 +148,6 @@
 		32C88E010371C26100C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				F4A2FA0D0F4663FF00A84E18 /* UTILKit.h */,
-				F4A2FA0E0F4663FF00A84E18 /* UTILError.h */,
-				F4A2FA0F0F4663FF00A84E18 /* UTILDescription.h */,
-				F4A2FA100F4663FF00A84E18 /* UTILDebugging.h */,
-				F4A2FA110F4663FF00A84E18 /* UTILAssertion.h */,
 				32DBCF630370AF2F00C91783 /* BSLinkConductor_Prefix.pch */,
 			);
 			name = "Other Sources";
@@ -174,6 +164,7 @@
 				8D5B49B1048680CD000E48DA /* Sources */,
 				8D5B49B3048680CD000E48DA /* Frameworks */,
 				F4F6ECA0124118670058FE97 /* CopyFiles */,
+				F4B1C915131000C800B4BF6C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -192,7 +183,14 @@
 			isa = PBXProject;
 			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "BSLinkConductor" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 089C166AFE841209C02AAC07 /* BSConductor */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -214,6 +212,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F4B1C915131000C800B4BF6C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+				"/Users/masaki/Library/Application support/BathyScaphe/PlugIns/${PRODUCT_NAME}.${WRAPPER_EXTENSION}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "dest=\"/Users/masaki/Library/Application support/BathyScaphe/PlugIns/\"\nsrcname=${PRODUCT_NAME}.${WRAPPER_EXTENSION}\n\ncp -r ${CONFIGURATION_BUILD_DIR}/${srcname} \"${dest}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D5B49B1048680CD000E48DA /* Sources */ = {
@@ -263,12 +279,11 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(HOME)/Applications/BathyScaphe.app/Contents/MacOS/BathyScaphe";
 				COPY_PHASE_STRIP = NO;
-				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_LOCATION = NO;
 				DSTROOT = /;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../OgreKit_2_1_4/build/Release\"",
-					"\"$(SRCROOT)/../CocoaOniguruma/framework/build/Release\"",
+					"\"$(SRCROOT)/../../CocoaOniguruma/framework/build/Release\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -290,12 +305,11 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(HOME)/Applications/BathyScaphe.app/Contents/MacOS/BathyScaphe";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_LOCATION = NO;
 				DSTROOT = /;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../OgreKit_2_1_4/build/Release\"",
-					"\"$(SRCROOT)/../CocoaOniguruma/framework/build/Release\"",
+					"\"$(SRCROOT)/../../CocoaOniguruma/framework/build/Release\"",
 				);
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

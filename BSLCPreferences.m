@@ -151,15 +151,12 @@ static void bslcSwapMethod()
 - (IBAction)add:(id)sender
 {
 	BSLinkConductorItem *item = [[[BSLinkConductorItem alloc] init] autorelease];
-	UTILDebugWrite1(@"New item is %@", item);
 	
 	[self willChangeValueForKey:@"items"];
 	[items addObject:item];
 	[self didChangeValueForKey:@"items"];
 	
 	[self notifyItemDidChange];
-	
-	UTILDebugWrite1(@"Add item. new item count is %d", [items count]);
 }
 - (IBAction)remove:(id)sender
 {
@@ -171,7 +168,6 @@ static void bslcSwapMethod()
 	
 	[self willChangeValueForKey:@"items"];
 	[items removeObjectAtIndex:row];
-	UTILDebugWrite(@"Remove item");
 	[self didChangeValueForKey:@"items"];
 	
 	[self notifyItemDidChange];
@@ -235,7 +231,6 @@ static void bslcSwapMethod()
 {
 	NSPasteboard *pboard = [info draggingPasteboard];
 	if(![[pboard types] containsObject:BSLCItemPastboardType]) {
-		UTILDebugWrite(@"Pboard do not have BSLCItemPastboardType");
 		return NSDragOperationNone;
 	}
 	
@@ -258,7 +253,6 @@ static void bslcSwapMethod()
 {
 	NSPasteboard *pboard = [info draggingPasteboard];
 	if(![[pboard types] containsObject:BSLCItemPastboardType]) {
-		UTILDebugWrite(@"Pboard do not have BSLCItemPastboardType");
 		return NO;
 	}
 	
@@ -269,7 +263,6 @@ static void bslcSwapMethod()
 	NSData *itemData = [pboard dataForType:BSLCItemPastboardType];
 	BSLinkConductorItem *item = [NSKeyedUnarchiver unarchiveObjectWithData:itemData];
 	if(![item isKindOfClass:[BSLinkConductorItem class]]) {
-		UTILDebugWrite1(@"pboard object is not BSLinkConductorItem.(%@)", item);
 		return NO;
 	}
 	
