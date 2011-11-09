@@ -226,7 +226,7 @@ static void bslcSwapMethod()
 
 - (NSDragOperation)tableView:(NSTableView*)targetTableView
 				validateDrop:(id <NSDraggingInfo>)info
-				 proposedRow:(int)row
+				 proposedRow:(NSInteger)row
 	   proposedDropOperation:(NSTableViewDropOperation)dropOperation
 {
 	NSPasteboard *pboard = [info draggingPasteboard];
@@ -248,7 +248,7 @@ static void bslcSwapMethod()
 
 - (BOOL)tableView:(NSTableView*)tableView
 	   acceptDrop:(id <NSDraggingInfo>)info
-			  row:(int)row
+			  row:(NSInteger)row
 	dropOperation:(NSTableViewDropOperation)dropOperation
 {
 	NSPasteboard *pboard = [info draggingPasteboard];

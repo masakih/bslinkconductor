@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
-		F47D76A1124231CD00FA7B7B /* CocoaOniguruma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F47D76A0124231CD00FA7B7B /* CocoaOniguruma.framework */; };
+		F4058754146AC4E3008A4304 /* CocoaOniguruma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4058753146AC4E3008A4304 /* CocoaOniguruma.framework */; };
 		F4A2F3FE0F43170F00A84E18 /* BSLinkConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2F3FD0F43170F00A84E18 /* BSLinkConductor.m */; };
 		F4A2F4020F4317A800A84E18 /* BSLinkConductorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2F4010F4317A800A84E18 /* BSLinkConductorItem.m */; };
 		F4A2F5880F444E3000A84E18 /* BSLinkConductor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4A2F5860F444E3000A84E18 /* BSLinkConductor.xib */; };
@@ -39,7 +39,7 @@
 		8D5B49B6048680CD000E48DA /* BSLinkConductor.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BSLinkConductor.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		F47D76A0124231CD00FA7B7B /* CocoaOniguruma.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaOniguruma.framework; path = /Users/masaki/Projects/CocoaOniguruma/framework/build/Release/CocoaOniguruma.framework; sourceTree = "<absolute>"; };
+		F4058753146AC4E3008A4304 /* CocoaOniguruma.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaOniguruma.framework; path = "/Users/masaki/Projects/External Project/CocoaOniguruma/framework/build/Release/CocoaOniguruma.framework"; sourceTree = "<absolute>"; };
 		F4A2F3FC0F43170F00A84E18 /* BSLinkConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLinkConductor.h; sourceTree = "<group>"; };
 		F4A2F3FD0F43170F00A84E18 /* BSLinkConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLinkConductor.m; sourceTree = "<group>"; };
 		F4A2F3FF0F43175300A84E18 /* BSImagePreviewerInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSImagePreviewerInterface.h; sourceTree = "<group>"; };
@@ -61,7 +61,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */,
-				F47D76A1124231CD00FA7B7B /* CocoaOniguruma.framework in Frameworks */,
+				F4058754146AC4E3008A4304 /* CocoaOniguruma.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +132,7 @@
 				089C167FFE841241C02AAC07 /* AppKit.framework */,
 				D2F7E65807B2D6F200F64583 /* CoreData.framework */,
 				089C1672FE841209C02AAC07 /* Foundation.framework */,
-				F47D76A0124231CD00FA7B7B /* CocoaOniguruma.framework */,
+				F4058753146AC4E3008A4304 /* CocoaOniguruma.framework */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";
@@ -277,13 +277,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(HOME)/Applications/BathyScaphe.app/Contents/MacOS/BathyScaphe";
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_LOCATION = NO;
 				DSTROOT = /;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../CocoaOniguruma/framework/build/Release\"",
+					"\"$(SRCROOT)/../../External Project/CocoaOniguruma/framework/build/Release\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -303,13 +302,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(HOME)/Applications/BathyScaphe.app/Contents/MacOS/BathyScaphe";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				DSTROOT = /;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../CocoaOniguruma/framework/build/Release\"",
+					"\"$(SRCROOT)/../../External Project/CocoaOniguruma/framework/build/Release\"",
 				);
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -326,7 +324,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -339,8 +336,7 @@
 		1DEB914008733D840010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				GCC_C_LANGUAGE_STANDARD = c99;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
