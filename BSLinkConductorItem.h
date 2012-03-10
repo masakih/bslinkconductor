@@ -21,19 +21,13 @@
 	NSString *targetIdentifier;
 }
 
-- (NSString *)name;
-- (void)setName:(NSString *)inName;
-- (NSString *)regularExpression;
-- (void)setRegularExpression:(NSString *)inRegularExpression;
-- (NSString *)targetApplicationName;
-- (void)setTargetApplicationName:(NSString *)inAppName;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *regularExpression;
+@property (nonatomic, copy) NSString *targetApplicationName;
+@property (readonly) NSString *targetIdentifier;
+@property (nonatomic, getter=isOpenInBackground) BOOL openInBackground;
+@property (nonatomic, getter=isUseLocalCopy) BOOL useLocalCopy;
 
-- (NSString *)targetIdentifier;
-
-- (BOOL)isOpenInBackground;
-- (void)setOpenInBackground:(BOOL)flag;
-- (BOOL)isUseLocalCopy;
-- (void)setUseLocalCopy:(BOOL)flag;
 
 extern NSString *BSLCItemPastboardType;
 

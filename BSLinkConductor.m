@@ -8,7 +8,7 @@
 
 #import "BSLinkConductor.h"
 
-#import <OgreKit/OGRegularExpression.h>
+#import <CocoaOniguruma/OnigRegexpUtility.h>
 #import "BSLinkConductorItem.h"
 #import "BSLCPreferences.h"
 
@@ -62,7 +62,19 @@ BSLinkConductor* BSLinkC;
 	
 	return self;
 }
-
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	
+	[tempFolder release];
+	[tempFileDict release];
+	[urlItemDict release];
+	[items release];
+	[appDefaults release];
+	
+	[super dealloc];
+}
+	
 - (AppDefaults *)preferences
 {
 	return appDefaults;
@@ -77,13 +89,10 @@ BSLinkConductor* BSLinkC;
 - (BOOL)showImageWithURL:(NSURL *)imageURL
 {
 	NSString *urlString = [imageURL absoluteString];
-	OGRegularExpression *exp;
 	
-	NSEnumerator *itemEnum = [items objectEnumerator];
-	BSLinkConductorItem *item;
-	while(item = [itemEnum nextObject]) {
-		exp = [OGRegularExpression regularExpressionWithString:[item regularExpression]];
-		if([exp matchInString:urlString]) {
+	for(BSLinkConductorItem *item in items) {
+		NSRange range = [urlString rangeOfRegexp:[item regularExpression]];
+		if(range.location != NSNotFound) {
 			if([item isUseLocalCopy]) {
 				[urlItemDict setObject:item forKey:imageURL];
 				[self beginDownloadURL:imageURL];
@@ -98,23 +107,13 @@ BSLinkConductor* BSLinkC;
 - (BOOL)validateLink:(NSURL *)anURL
 {
 	NSString *urlString = [anURL absoluteString];
-	OGRegularExpression *exp;
 	
-	NSEnumerator *itemEnum = [items objectEnumerator];
-	BSLinkConductorItem *item;
-	while(item = [itemEnum nextObject]) {
-		exp = [OGRegularExpression regularExpressionWithString:[item regularExpression]];
-		UTILDebugWrite1(@"RE -->  %@", [item regularExpression]);
-		
-		if([exp matchInString:urlString]) {
-			
-			UTILDebugWrite(@"Matched!!");
-			
+	for(BSLinkConductorItem *item in items) {
+		NSRange range = [urlString rangeOfRegexp:[item regularExpression]];
+		if(range.location != NSNotFound) {
 			return YES;
 		}
 	}
-	
-	UTILDebugWrite(@"Unmatched!!!");
 	
 	return NO;
 }
@@ -134,7 +133,7 @@ BSLinkConductor* BSLinkC;
 	[pref showWindow:sender];
 }
 
-- (void)awakeByPreviewerSelector:(PreviewerSelector *)thePreviewerSelector
+- (void)awakeByPreviewerSelector:(id <PSPreviewerInterface>)thePreviewerSelector
 {
 	previewSelector = [thePreviewerSelector retain];
 	[self setPreviewers:[thePreviewerSelector previewerItems]];
@@ -167,11 +166,9 @@ BSLinkConductor* BSLinkC;
 	NSMutableArray *array = [NSMutableArray array];
 	
 	NSString *displayName = [self displayName];
-	NSEnumerator *iter = [newArray objectEnumerator];
-	id p;
-	while(p = [iter nextObject]) {
-		if(![displayName isEqualToString:[p displayName]]) {
-			[array addObject:p];
+	for(PSPreviewerItem *item in newArray) {
+		if(![displayName isEqualToString:[item displayName]]) {
+			[array addObject:item];
 		}
 	}
 	previewers = [array copy];
@@ -199,7 +196,6 @@ BSLinkConductor* BSLinkC;
 	NSWorkspaceLaunchOptions options = 0;
 	
 	if(!item) {
-		UTILDebugWrite1(@"%@, item is nil!!!", NSStringFromSelector(_cmd));
 		return NO;
 	}
 	
@@ -231,13 +227,11 @@ additionalEventParamDescriptor:nil
 {
 	NSData *itemsData = [self preferenceForKey:BSLCSavedItemsKey];
 	if(!itemsData) {
-		UTILDebugWrite(@"itemsData is nil!!!");
 		return [NSMutableArray array];
 	}
 	
 	NSArray *itemsArray = [NSKeyedUnarchiver unarchiveObjectWithData:itemsData];
 	if(![itemsArray isKindOfClass:[NSArray class]]) {
-		UTILDebugWrite(@"itemsArray is not NSArray!!!");
 		return [NSMutableArray array];
 	}
 	
@@ -247,13 +241,10 @@ additionalEventParamDescriptor:nil
 {
 	NSData *itemsData = [NSKeyedArchiver archivedDataWithRootObject:items];
 	if(!itemsData) {
-		UTILDebugWrite(@"Can not archive!!!");
 		return;
 	}
 	
 	[self setPreference:itemsData forKey:BSLCSavedItemsKey];
-	
-	UTILDebugWrite(@"Stored!!!");
 }
 
 - (NSString *)fileNameForURL:(NSURL *)anURL

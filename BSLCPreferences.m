@@ -14,34 +14,34 @@
 
 #import <objc/objc-class.h>
 
+static NSString *const BSLCPreferencesSeparetorItem = @"-- BSLCPreferences Separetor Item --";
+
+@implementation NSMenuItem (BSLCMethodExchange)
+- (BOOL)isSeparatorItemBSLCCustom
+{
+	if([BSLCPreferencesSeparetorItem isEqualToString:[self title]]) return YES;
+	
+	return [self isSeparatorItemBSLCCustom];
+}
+@end
 
 @implementation BSLCPreferences
 
 NSString *BSLCItemsDidChangeNotification = @"BSLCItemsDidChangeNotification";
 
-static NSString *const BSLCPreferencesSeparetorItem = @"-- BSLCPreferences Separetor Item --";
 static NSString *const BSLCPreferencesAddItem = @"Choose ...";
 static BSLCPreferences *instance = nil;
 
 static NSString *const BSLCPRowIndexType = @"BSLCPRowIndexType";
 
-static BOOL (*orignalIMP)(id , SEL) ;
-
-BOOL bslcIsSeparatorItem(id self, SEL _cmd)
-{
-	if([BSLCPreferencesSeparetorItem isEqualToString:[self title]]) return YES;
-	
-	return orignalIMP(self, _cmd);
-}
 static void bslcSwapMethod()
 {
     Method method;
 	
     method = class_getInstanceMethod([NSMenuItem class], @selector(isSeparatorItem));
 	if(method) {
-		orignalIMP = (BOOL (*)(id,SEL))method->method_imp;
-		method->method_imp = (IMP)bslcIsSeparatorItem;
-//		NSLog(@"Swaped");
+		Method newMethod = class_getInstanceMethod([NSMenuItem class], @selector(isSeparatorItemBSLCCustom));
+		method_exchangeImplementations(method, newMethod);
 	}
 }
 
@@ -131,11 +131,8 @@ static void bslcSwapMethod()
 	
 	[result addObject:BSLCPreferencesSeparetorItem];
 	
-	NSArray *ps = [BSLinkC previewers];
-	NSEnumerator *psIter = [ps objectEnumerator];
-	id p;
-	while(p = [psIter nextObject]) {
-		[result addObject:[p displayName]];
+	for(PSPreviewerItem *item in [BSLinkC previewers]) {
+		[result addObject:[item displayName]];
 	}
 	[result addObject:BSLCPreferencesSeparetorItem];
 	
@@ -154,15 +151,12 @@ static void bslcSwapMethod()
 - (IBAction)add:(id)sender
 {
 	BSLinkConductorItem *item = [[[BSLinkConductorItem alloc] init] autorelease];
-	UTILDebugWrite1(@"New item is %@", item);
 	
 	[self willChangeValueForKey:@"items"];
 	[items addObject:item];
 	[self didChangeValueForKey:@"items"];
 	
 	[self notifyItemDidChange];
-	
-	UTILDebugWrite1(@"Add item. new item count is %d", [items count]);
 }
 - (IBAction)remove:(id)sender
 {
@@ -174,7 +168,6 @@ static void bslcSwapMethod()
 	
 	[self willChangeValueForKey:@"items"];
 	[items removeObjectAtIndex:row];
-	UTILDebugWrite(@"Remove item");
 	[self didChangeValueForKey:@"items"];
 	
 	[self notifyItemDidChange];
@@ -233,12 +226,11 @@ static void bslcSwapMethod()
 
 - (NSDragOperation)tableView:(NSTableView*)targetTableView
 				validateDrop:(id <NSDraggingInfo>)info
-				 proposedRow:(int)row
+				 proposedRow:(NSInteger)row
 	   proposedDropOperation:(NSTableViewDropOperation)dropOperation
 {
 	NSPasteboard *pboard = [info draggingPasteboard];
 	if(![[pboard types] containsObject:BSLCItemPastboardType]) {
-		UTILDebugWrite(@"Pboard do not have BSLCItemPastboardType");
 		return NSDragOperationNone;
 	}
 	
@@ -256,12 +248,11 @@ static void bslcSwapMethod()
 
 - (BOOL)tableView:(NSTableView*)tableView
 	   acceptDrop:(id <NSDraggingInfo>)info
-			  row:(int)row
+			  row:(NSInteger)row
 	dropOperation:(NSTableViewDropOperation)dropOperation
 {
 	NSPasteboard *pboard = [info draggingPasteboard];
 	if(![[pboard types] containsObject:BSLCItemPastboardType]) {
-		UTILDebugWrite(@"Pboard do not have BSLCItemPastboardType");
 		return NO;
 	}
 	
@@ -272,7 +263,6 @@ static void bslcSwapMethod()
 	NSData *itemData = [pboard dataForType:BSLCItemPastboardType];
 	BSLinkConductorItem *item = [NSKeyedUnarchiver unarchiveObjectWithData:itemData];
 	if(![item isKindOfClass:[BSLinkConductorItem class]]) {
-		UTILDebugWrite1(@"pboard object is not BSLinkConductorItem.(%@)", item);
 		return NO;
 	}
 	
