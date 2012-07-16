@@ -53,7 +53,7 @@ static NSString *const BSLCItemUserCopyKey = @"BSLCItemUserCopyKey";
 	if([targetApplicationName isEqualToString:inAppName]) return;
 	
 	[targetApplicationName autorelease];
-	targetApplicationName = [inAppName copyWithZone:[self zone]];
+	targetApplicationName = [inAppName copy];
 	
 	NSWorkspace *ws = [NSWorkspace sharedWorkspace];
 	NSString *fullPath = [ws fullPathForApplication:targetApplicationName];
@@ -67,7 +67,7 @@ static NSString *const BSLCItemUserCopyKey = @"BSLCItemUserCopyKey";
 		return;
 	}
 	
-	targetIdentifier = [[bundle bundleIdentifier] copyWithZone:[self zone]];
+	targetIdentifier = [[bundle bundleIdentifier] copy];
 }
 
 - (id)copyWithZone:(NSZone *)zone
