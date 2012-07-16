@@ -22,6 +22,10 @@ static NSString *const BSLCSavedItemsKey = @"com.masakih.BSLinkConductor.BSLCSav
 
 BSLinkConductor* BSLinkC;
 
+@interface BSLinkConductor () <NSURLDownloadDelegate>
+
+@end
+
 @interface BSLinkConductor (BSLCPrivate)
 - (BOOL)openLink:(NSURL *)anURL withItem:(BSLinkConductorItem *)item;
 

@@ -172,19 +172,6 @@ static void bslcSwapMethod()
 	
 	[self notifyItemDidChange];
 }
-
-- (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo
-{
-	[panel orderOut:self];
-	
-	if(NSCancelButton == returnCode) return;
-	
-	NSString *filename = [panel filename];
-	filename = [filename lastPathComponent];
-	filename = [filename stringByDeletingPathExtension];
-	
-	[itemsController setValue:filename forKeyPath:@"selection.targetApplicationName"];
-}
 	
 - (void)chooseApplication:(id)sender
 {
@@ -194,14 +181,21 @@ static void bslcSwapMethod()
 	
 	NSOpenPanel *panel = [NSOpenPanel openPanel];
 	[panel setAllowsMultipleSelection:NO];
-	
-	[panel beginSheetForDirectory:@"/Applications/"
-							 file:@""
-							types:[NSArray arrayWithObject:@"app"]
-				   modalForWindow:[sender window]
-					modalDelegate:self didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:)
-					  contextInfo:NULL];
-	
+	[panel setResolvesAliases:YES];
+	[panel setDirectoryURL:[NSURL fileURLWithPath:@"/Applications/"]];
+	[panel setAllowedFileTypes:[NSArray arrayWithObject:@"app"]];
+	[panel beginSheetModalForWindow:[sender window]
+				  completionHandler:^(NSInteger result) {
+					  [panel orderOut:self];
+					  
+					  if(NSCancelButton == result) return;
+					  
+					  NSURL *fileURL = [panel URL];
+					  NSString *filename = [fileURL lastPathComponent];
+					  filename = [filename stringByDeletingPathExtension];
+					  
+					  [itemsController setValue:filename forKeyPath:@"selection.targetApplicationName"];
+				  }];
 }
 - (IBAction)menuDidChange:(id)sender
 {

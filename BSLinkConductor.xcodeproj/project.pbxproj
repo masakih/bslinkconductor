@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
-		F4058754146AC4E3008A4304 /* CocoaOniguruma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4058753146AC4E3008A4304 /* CocoaOniguruma.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		F4058754146AC4E3008A4304 /* CocoaOniguruma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4058753146AC4E3008A4304 /* CocoaOniguruma.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		F4A2F3FE0F43170F00A84E18 /* BSLinkConductor.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2F3FD0F43170F00A84E18 /* BSLinkConductor.m */; };
 		F4A2F4020F4317A800A84E18 /* BSLinkConductorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2F4010F4317A800A84E18 /* BSLinkConductorItem.m */; };
 		F4A2F5880F444E3000A84E18 /* BSLinkConductor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4A2F5860F444E3000A84E18 /* BSLinkConductor.xib */; };
@@ -39,7 +39,7 @@
 		8D5B49B6048680CD000E48DA /* BSLinkConductor.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BSLinkConductor.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		F4058753146AC4E3008A4304 /* CocoaOniguruma.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaOniguruma.framework; path = "/Users/masaki/Projects/External Project/CocoaOniguruma/framework/build/Release/CocoaOniguruma.framework"; sourceTree = "<absolute>"; };
+		F4058753146AC4E3008A4304 /* CocoaOniguruma.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaOniguruma.framework; path = /Users/masaki/Projects/ExternalProject/CocoaOniguruma/framework/build/Release/CocoaOniguruma.framework; sourceTree = "<absolute>"; };
 		F4A2F3FC0F43170F00A84E18 /* BSLinkConductor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLinkConductor.h; sourceTree = "<group>"; };
 		F4A2F3FD0F43170F00A84E18 /* BSLinkConductor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSLinkConductor.m; sourceTree = "<group>"; };
 		F4A2F3FF0F43175300A84E18 /* BSImagePreviewerInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSImagePreviewerInterface.h; sourceTree = "<group>"; };
@@ -226,7 +226,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "dest=\"/Users/masaki/Library/Application support/BathyScaphe/PlugIns/\"\nsrcname=${PRODUCT_NAME}.${WRAPPER_EXTENSION}\n\ncp -r ${CONFIGURATION_BUILD_DIR}/${srcname} \"${dest}\"\n";
+			shellScript = "app=BathyScaphe\n\ndest=$HOME/Library/Application\\ Support/$app/PlugIns/\nsrc=$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.plugin\n\nif [ -d \"$dest/$PRODUCT_NAME.plugin\" ] ; then\nrm -fr \"$dest/$PRODUCT_NAME.plugin\"\nfi\n\necho \"Copy\"\ncp -R $src \"$dest\"";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -318,11 +318,11 @@
 		1DEB913F08733D840010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx10.7;
 			};
 			name = Debug;
