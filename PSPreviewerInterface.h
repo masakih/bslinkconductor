@@ -34,7 +34,9 @@
 
 @interface NSObject (PSPreviewerInterface)
 + (id <PSPreviewerInterface>)PSPreviewerSelector;
+@end
 
+@interface NSObject (PreviewerOptionalMethod)
 // this method called, if previewer load by PreviewerSelector.
 // all property is ready.
 - (void)awakeByPreviewerSelector:(id <PSPreviewerInterface>)previewerSelector;
