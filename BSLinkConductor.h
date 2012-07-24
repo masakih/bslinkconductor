@@ -19,7 +19,7 @@
 	
 	NSMutableArray *items;
 	
-	PreviewerSelector *previewSelector;
+	PreviewerSelector<PSPreviewerInterface> *previewSelector;
 	NSArray *previewers;
 	
 	HMTemporaryFolder *tempFolder;

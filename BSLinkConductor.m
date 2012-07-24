@@ -22,6 +22,10 @@ static NSString *const BSLCSavedItemsKey = @"com.masakih.BSLinkConductor.BSLCSav
 
 BSLinkConductor* BSLinkC;
 
+@interface BSLinkConductor () <NSURLDownloadDelegate>
+
+@end
+
 @interface BSLinkConductor (BSLCPrivate)
 - (BOOL)openLink:(NSURL *)anURL withItem:(BSLinkConductorItem *)item;
 
@@ -91,9 +95,9 @@ BSLinkConductor* BSLinkC;
 	NSString *urlString = [imageURL absoluteString];
 	
 	for(BSLinkConductorItem *item in items) {
-		NSRange range = [urlString rangeOfRegexp:[item regularExpression]];
+		NSRange range = [urlString rangeOfRegexp:item.regularExpression];
 		if(range.location != NSNotFound) {
-			if([item isUseLocalCopy]) {
+			if(item.isUseLocalCopy) {
 				[urlItemDict setObject:item forKey:imageURL];
 				[self beginDownloadURL:imageURL];
 				return YES;
@@ -109,7 +113,7 @@ BSLinkConductor* BSLinkC;
 	NSString *urlString = [anURL absoluteString];
 	
 	for(BSLinkConductorItem *item in items) {
-		NSRange range = [urlString rangeOfRegexp:[item regularExpression]];
+		NSRange range = [urlString rangeOfRegexp:item.regularExpression];
 		if(range.location != NSNotFound) {
 			return YES;
 		}
@@ -185,12 +189,12 @@ BSLinkConductor* BSLinkC;
 
 - (BOOL)isPreviewerItem:(BSLinkConductorItem *)item
 {
-	return [[previewSelector previewerDisplayNames] containsObject:[item targetApplicationName]];
+	return [[previewSelector previewerDisplayNames] containsObject:item.targetApplicationName];
 }
 - (BOOL)openLink:(NSURL *)anURL withItem:(BSLinkConductorItem *)item;
 {
 	if([self isPreviewerItem:item]) {
-		return [previewSelector openURL:anURL inPreviewerByName:[item targetApplicationName]];
+		return [previewSelector openURL:anURL inPreviewerByName:item.targetApplicationName];
 	}
 	
 	NSWorkspaceLaunchOptions options = 0;
@@ -199,13 +203,13 @@ BSLinkConductor* BSLinkC;
 		return NO;
 	}
 	
-	if([item isOpenInBackground]) {
+	if(item.isOpenInBackground) {
 		options |= NSWorkspaceLaunchWithoutActivation;
 	}
 	
 	NSWorkspace *ws = [NSWorkspace sharedWorkspace];
 	BOOL result = [ws openURLs:[NSArray arrayWithObject:anURL]
-	   withAppBundleIdentifier:[item targetIdentifier]
+	   withAppBundleIdentifier:item.targetIdentifier
 					   options:options
 additionalEventParamDescriptor:nil
 			 launchIdentifiers:NULL];

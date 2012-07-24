@@ -22,82 +22,82 @@ static NSString *const BSLCItemUserCopyKey = @"BSLCItemUserCopyKey";
 
 @implementation BSLinkConductorItem
 
-@synthesize name, regularExpression, targetApplicationName;
-@synthesize targetIdentifier;
-@synthesize openInBackground, useLocalCopy;
+@synthesize name = _name, regularExpression = _regularExpression, targetApplicationName = _targetApplicationName;
+@synthesize targetIdentifier = _targetIdentifier;
+@synthesize openInBackground = _openInBackground, useLocalCopy = _useLocalCopy;
 
 - (id)init
 {
 	if(self = [super init]) {
-		[self setName:[self defaultName]];
-		[self setRegularExpression:@"http://.*"];
-		[self setTargetApplicationName:@""];
-		[self setOpenInBackground:NO];
-		[self setUseLocalCopy:NO];
+		self.name = [self defaultName];
+		self.regularExpression = @"http://.*";
+		self.targetApplicationName = @"";
+//		self.openInBackground = NO;
+//		self.useLocalCopy = NO;
 	}
 	
 	return self;
 }
 - (void)dealloc
 {
-	self.name = nil;
-	self.regularExpression = nil;
-	self.targetApplicationName = nil;
-	[targetIdentifier release];
+	[_name release];
+	[_regularExpression release];
+	[_targetApplicationName release];
+	[_targetIdentifier release];
 	
 	[super dealloc];
 }
 
 - (void)setTargetApplicationName:(NSString *)inAppName
 {
-	if([targetApplicationName isEqualToString:inAppName]) return;
+	if([_targetApplicationName isEqualToString:inAppName]) return;
 	
-	[targetApplicationName autorelease];
-	targetApplicationName = [inAppName copyWithZone:[self zone]];
+	[_targetApplicationName release];
+	_targetApplicationName = [inAppName copy];
 	
 	NSWorkspace *ws = [NSWorkspace sharedWorkspace];
-	NSString *fullPath = [ws fullPathForApplication:targetApplicationName];
+	NSString *fullPath = [ws fullPathForApplication:_targetApplicationName];
 	if(!fullPath) {
-		targetIdentifier = nil;
+		_targetIdentifier = nil;
 		return;
 	}
 	NSBundle *bundle = [NSBundle bundleWithPath:fullPath];
 	if(!bundle) {
-		targetIdentifier = nil;
+		_targetIdentifier = nil;
 		return;
 	}
 	
-	targetIdentifier = [[bundle bundleIdentifier] copyWithZone:[self zone]];
+	_targetIdentifier = [[bundle bundleIdentifier] copy];
 }
 
 - (id)copyWithZone:(NSZone *)zone
 {
 	BSLinkConductorItem *result = [[[self class] allocWithZone:zone] init];
-	[result setName:name];
-	[result setRegularExpression:regularExpression];
-	[result setTargetApplicationName:targetApplicationName];
-	[result setOpenInBackground:openInBackground];
-	[result setUseLocalCopy:useLocalCopy];
+	result.name = self.name;
+	result.regularExpression = self.regularExpression;
+	result.targetApplicationName = self.targetApplicationName;
+	result.openInBackground = self.isOpenInBackground;
+	result.useLocalCopy = self.isUseLocalCopy;
 	
 	return result;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-	[aCoder encodeObject:name forKey:BSLCItemNameKey];
-	[aCoder encodeObject:regularExpression forKey:BSLCItemREKey];
-	[aCoder encodeObject:targetApplicationName forKey:BSLCItemAppNameKey];
-	[aCoder encodeBool:openInBackground forKey:BSLCItemOpenBGKey];
-	[aCoder encodeBool:useLocalCopy forKey:BSLCItemUserCopyKey];
+	[aCoder encodeObject:self.name forKey:BSLCItemNameKey];
+	[aCoder encodeObject:self.regularExpression forKey:BSLCItemREKey];
+	[aCoder encodeObject:self.targetApplicationName forKey:BSLCItemAppNameKey];
+	[aCoder encodeBool:self.isOpenInBackground forKey:BSLCItemOpenBGKey];
+	[aCoder encodeBool:self.isUseLocalCopy forKey:BSLCItemUserCopyKey];
 }
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [self init];
-	[self setName:[aDecoder decodeObjectForKey:BSLCItemNameKey]];
-	[self setRegularExpression:[aDecoder decodeObjectForKey:BSLCItemREKey]];
-	[self setTargetApplicationName:[aDecoder decodeObjectForKey:BSLCItemAppNameKey]];
-	[self setOpenInBackground:[aDecoder decodeBoolForKey:BSLCItemOpenBGKey]];
-	[self setUseLocalCopy:[aDecoder decodeBoolForKey:BSLCItemUserCopyKey]];
+	self.name = [aDecoder decodeObjectForKey:BSLCItemNameKey];
+	self.regularExpression = [aDecoder decodeObjectForKey:BSLCItemREKey];
+	self.targetApplicationName = [aDecoder decodeObjectForKey:BSLCItemAppNameKey];
+	self.openInBackground = [aDecoder decodeBoolForKey:BSLCItemOpenBGKey];
+	self.useLocalCopy = [aDecoder decodeBoolForKey:BSLCItemUserCopyKey];
 	
 	return self;
 }
@@ -105,7 +105,7 @@ static NSString *const BSLCItemUserCopyKey = @"BSLCItemUserCopyKey";
 - (id)description
 {
 	return [NSString stringWithFormat:@"%@<%p> {name = %@, regularExpression = %@, targetApplicationName = %@",
-			NSStringFromClass([self class]), self, name, regularExpression, targetApplicationName];
+			NSStringFromClass([self class]), self, self.name, self.regularExpression, self.targetApplicationName];
 }
 	
 @end

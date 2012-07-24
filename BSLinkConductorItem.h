@@ -11,14 +11,14 @@
 
 @interface BSLinkConductorItem : NSObject <NSCoding, NSCopying>
 {
-	NSString *name;
-	NSString *regularExpression;
-	NSString *targetApplicationName;
+	NSString *_name;
+	NSString *_regularExpression;
+	NSString *_targetApplicationName;
 	
-	BOOL openInBackground;
-	BOOL useLocalCopy;
+	BOOL _openInBackground;
+	BOOL _useLocalCopy;
 	
-	NSString *targetIdentifier;
+	NSString *_targetIdentifier;
 }
 
 @property (nonatomic, copy) NSString *name;

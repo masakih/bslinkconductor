@@ -39,7 +39,7 @@
 			_path = [tmpDir stringByAppendingPathComponent:folderName];
 			
 			if( ![fm fileExistsAtPath:_path] &&
-				[fm createDirectoryAtPath:_path attributes:nil] ) {
+			   [fm createDirectoryAtPath:_path withIntermediateDirectories:NO attributes:nil error:NULL]) {
 				created = YES;
 			}
 		} while( !created );
